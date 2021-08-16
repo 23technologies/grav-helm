@@ -1,0 +1,8 @@
+grav_version: 1.7.18
+git:
+  repository: https://github.com/23technologies/grav-okeanos.git
+  username: 23t-machine-user
+  branch: main
+  secret_ref: 23t-machine-user-token
+hostname: 23technologies.cloud
+www_redirect: false

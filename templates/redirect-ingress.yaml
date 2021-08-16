@@ -1,0 +1,17 @@
+{{ if .Values.www_redirect }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/permanent-redirect: https://{{ .Values.hostname }}
+  name: grav-www
+spec:
+  rules:
+  - host: www.{{ .Values.hostname }}
+  tls:
+  - hosts:
+    - www.{{ .Values.hostname }}
+    secretName: grav-www-tls
+{{ end }}
