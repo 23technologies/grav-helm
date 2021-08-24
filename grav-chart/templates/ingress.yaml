@@ -1,10 +1,12 @@
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    dns.gardener.cloud/dnsnames: {{ .Values.hostname }}
+    dns.gardener.cloud/ttl: "500"
+    dns.gardener.cloud/class: garden
   name: grav
 spec:
   rules:
