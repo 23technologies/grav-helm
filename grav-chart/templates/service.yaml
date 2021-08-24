@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: grav
   annotations:
-    - load-balancer.hetzner.cloud/ipv6-disabled: true
+    load-balancer.hetzner.cloud/ipv6-disabled: true
 spec:
   selector:
     app: grav
