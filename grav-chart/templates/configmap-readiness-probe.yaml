@@ -3,7 +3,7 @@ data:
   readiness_probe.sh: |
     #!/usr/bin/env bash
     RESPONSE_SIZE=$(wget 127.0.0.1 -O - 2> /dev/null | wc -c)
-    if [ $RESPONSE_SIZE -ge 10240 ]
+    if [ $RESPONSE_SIZE -ge 512 ]
     then
       exit 0
     else
