@@ -36,7 +36,9 @@ spec:
         ports:
         - containerPort: 80
         readinessProbe:
-          exec: "/usr/local/bin/readiness_probe.sh"
+          exec:
+            command: 
+              - "/usr/local/bin/readiness_probe.sh"
         lifecycle:
           postStart:
             exec:
