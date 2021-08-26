@@ -31,8 +31,12 @@ spec:
         - name: nginx-default-site
           mountPath: /config/nginx/site-confs/default
           subPath: default
+        - name: grav-readiness-probe
+          mountPath: /usr/local/bin
         ports:
         - containerPort: 80
+        readinessProbe:
+          exec: "/usr/local/bin/readiness_probe.sh"
         lifecycle:
           postStart:
             exec:
@@ -88,3 +92,6 @@ spec:
       - name: nginx-default-site
         configMap:
           name: nginx-default-site
+      - name: readiness-probe
+        configMap:
+          name: grav-readiness-probe
