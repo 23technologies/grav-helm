@@ -97,3 +97,4 @@ spec:
       - name: grav-readiness-probe
         configMap:
           name: grav-readiness-probe
+          defaultMode: 0755
