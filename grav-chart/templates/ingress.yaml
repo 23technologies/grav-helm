@@ -1,26 +1,53 @@
+{{- range $.Values.hostnames }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    dns.gardener.cloud/dnsnames: {{ .Values.hostname }}
+    {{- if .use_gardener_dns }}
+    dns.gardener.cloud/dnsnames: {{ .name }}
     dns.gardener.cloud/ttl: "500"
     dns.gardener.cloud/class: garden
+    {{- end }}
   name: grav
 spec:
   rules:
-  - host: {{ .Values.hostname }}
-    http:
-      paths:
-      - backend:
-          service:
-            name: grav
-            port:
-              number: 80
-        path: /
-        pathType: ImplementationSpecific
+    - host: {{ .name }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: grav
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific
   tls:
   - hosts:
-    - {{ .Values.hostname }}
+    - {{ .name }}
     secretName: grav-tls
+
+{{ if .www_redirect }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/permanent-redirect: https://{{ .name }}
+    {{- if .use_gardener_dns }}
+    dns.gardener.cloud/dnsnames: www.{{ .name }}
+    dns.gardener.cloud/ttl: "500"
+    dns.gardener.cloud/class: garden
+    {{- end }}
+  name: grav-www
+spec:
+  rules:
+  - host: www.{{ .name }}
+  tls:
+  - hosts:
+    - www.{{ .name }}
+    secretName: grav-www-tls
+{{ end }}
+{{- end }} 

@@ -1,0 +1,35 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+You have ingresses with the following managed hostnames:
+{{- range .Values.hostnames }}
+{{- if .use_gardener_dns }}
+ - {{ .name }}
+{{- if .www_redirect }}
+ - www.{{ .name }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+You have ingresses with the following unmanaged hostnames:
+{{- range .Values.hostnames }}
+{{- if not .use_gardener_dns }}
+ - {{ .name }}
+{{- if .www_redirect }}
+ - www.{{ .name }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+In order for traffic to be sent to the unmanaged hostnames you should now create DNS-Entries following this scheme:
+
+
+{{- range .Values.hostnames }}
+{{- if not .use_gardener_dns }}
+{{ .name }}         CNAME <managed hostname>
+{{- if .www_redirect }}
+www.{{ .name }}         CNAME <managed hostname>
+{{- end }}
+{{- end }}
+{{- end }}

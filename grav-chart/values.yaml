@@ -4,5 +4,10 @@ git:
   username: 23t-machine-user
   branch: main
   secret_ref: 23t-machine-user-token
-hostname: 23technologies.cloud
-www_redirect: false
+hostnames:
+  - name: 23technologies.cloud
+    www_redirect: true
+    use_gardener_dns: false
+  - name: 23t.grav.23t-prod.okeanos.dev
+    www_redirect: false
+    use_gardener_dns: true
