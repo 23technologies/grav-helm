@@ -10,7 +10,7 @@ metadata:
     dns.gardener.cloud/ttl: "500"
     dns.gardener.cloud/class: garden
     {{- end }}
-  name: grav
+  name: grav-{{ .name }}
 spec:
   rules:
     - host: {{ .name }}
@@ -26,7 +26,7 @@ spec:
   tls:
   - hosts:
     - {{ .name }}
-    secretName: grav-tls
+    secretName: grav-{{ .name }}-tls
 
 {{ if .www_redirect }}
 ---
@@ -41,13 +41,13 @@ metadata:
     dns.gardener.cloud/ttl: "500"
     dns.gardener.cloud/class: garden
     {{- end }}
-  name: grav-www
+  name: grav-www-{{ .name }}
 spec:
   rules:
   - host: www.{{ .name }}
   tls:
   - hosts:
     - www.{{ .name }}
-    secretName: grav-www-tls
+    secretName: grav-www-{{ .name }}-tls
 {{ end }}
 {{- end }} 
