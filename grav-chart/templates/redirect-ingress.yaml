@@ -6,6 +6,9 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/permanent-redirect: https://{{ .Values.hostname }}
+    dns.gardener.cloud/dnsnames: www.{{ .Values.hostname }}
+    dns.gardener.cloud/ttl: "500"
+    dns.gardener.cloud/class: garden
   name: grav-www
 spec:
   rules:
