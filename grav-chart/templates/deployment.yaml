@@ -47,6 +47,8 @@ spec:
                 - "-c"
                 - >
                   echo "#!/usr/bin/env sh" > /etc/cont-init.d/90-git-sync-init;
+                  echo "mkdir /app/grav-admin/user/data" >> /etc/cont-init.d/90-git-sync-init;
+                  echo "chown -R abc:users /app/grav-admin/" >> /etc/cont-init.d/90-git-sync-init;
                   echo "cd /app/grav-admin" >> /etc/cont-init.d/90-git-sync-init;
                   echo "bin/plugin git-sync init" >> /etc/cont-init.d/90-git-sync-init;
                   chmod +x /etc/cont-init.d/90-git-sync-init;
