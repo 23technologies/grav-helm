@@ -47,13 +47,11 @@ spec:
                 - "-c"
                 - >
                   echo "#!/usr/bin/env sh" > /etc/cont-init.d/90-git-sync-init;
-                  echo "mkdir /app/grav-admin/user/data" >> /etc/cont-init.d/90-git-sync-init;
-                  echo "chown -R abc:abc /app/grav-admin/" >> /etc/cont-init.d/90-git-sync-init;
                   echo "cd /app/grav-admin" >> /etc/cont-init.d/90-git-sync-init;
                   echo "bin/plugin git-sync init" >> /etc/cont-init.d/90-git-sync-init;
                   chmod +x /etc/cont-init.d/90-git-sync-init;
-                  echo "* * * * * chown -R abc:abc /app/grav-admin/" >> /etc/crontabs/root;
-                  echo "* * * * * chown -R abc:abc /app/grav-admin/logs/grav.log" >> /etc/crontabs/root;
+                  echo "* * * * * chown -R abc:users /app/grav-admin/" >> /etc/crontabs/root;
+                  echo "* * * * * chown -R abc:users /app/grav-admin/logs/grav.log" >> /etc/crontabs/root;
       initContainers:
       - name: git-sync
         image: k8s.gcr.io/git-sync:v3.1.3
