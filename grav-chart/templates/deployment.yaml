@@ -33,6 +33,8 @@ spec:
           subPath: default
         - name: grav-readiness-probe
           mountPath: /usr/local/bin
+        - name: php-ini
+          mountPath: /etc/php7
         ports:
         - containerPort: 80
         readinessProbe:
@@ -99,3 +101,7 @@ spec:
         configMap:
           name: grav-readiness-probe
           defaultMode: 0755
+      - name: php-ini
+        configMap:
+          name: php-ini
+          defaultMode: 0644
