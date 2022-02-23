@@ -34,7 +34,8 @@ spec:
         - name: grav-readiness-probe
           mountPath: /usr/local/bin
         - name: php-ini
-          mountPath: "/etc/php7"
+          mountPath: "/etc/php7/php.ini"
+          subPath: php.ini
         ports:
         - containerPort: 80
         readinessProbe:
