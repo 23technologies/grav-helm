@@ -111,7 +111,7 @@ spec:
           items:
           - key: php.ini
             path: php.ini
-      - name: php8ini
+      - name: php8-ini
         configMap:
           name: php8-ini
           items:
