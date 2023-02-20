@@ -36,6 +36,9 @@ spec:
         - name: php-ini
           mountPath: "/etc/php7/php.ini"
           subPath: php.ini
+        - name: php8-ini
+          mountPath: "/etc/php8/php.ini"
+          subPath: php.ini
         ports:
         - containerPort: 80
         readinessProbe:
@@ -105,6 +108,12 @@ spec:
       - name: php-ini
         configMap:
           name: php-ini
+          items:
+          - key: php.ini
+            path: php.ini
+      - name: php8ini
+        configMap:
+          name: php8-ini
           items:
           - key: php.ini
             path: php.ini
