@@ -29,7 +29,7 @@ spec:
         - name: grav-user
           mountPath: /config/www/user
         - name: nginx-default-site
-          mountPath: /config/nginx/site-confs/default
+          mountPath: /config/nginx/site-confs/default.conf
           subPath: default
         - name: grav-readiness-probe
           mountPath: /usr/local/bin
