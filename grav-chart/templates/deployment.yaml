@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: grav
-        image: linuxserver/grav:version-{{ .Values.grav_version }}
+        image: lscr.io/linuxserver/grav:version-{{ .Values.grav_version }}
         env:
         - name: PUID
           value: "1000"
