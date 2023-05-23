@@ -28,17 +28,11 @@ spec:
         volumeMounts:
         - name: grav-user
           mountPath: /config/www/user
-        - name: nginx-default-site
-          mountPath: /config/nginx/site-confs/default
-          subPath: default
         - name: grav-readiness-probe
           mountPath: /usr/local/bin
         - name: php-ini
-          mountPath: "/etc/php7/php.ini"
-          subPath: php.ini
-        - name: php8-ini
-          mountPath: "/etc/php8/php.ini"
-          subPath: php.ini
+          mountPath: "/config/php/php-local.ini"
+          subPath: php-local.ini
         ports:
         - containerPort: 80
         readinessProbe:
@@ -98,9 +92,6 @@ spec:
       volumes:
       - name: grav-user
         emptyDir: {}
-      - name: nginx-default-site
-        configMap:
-          name: nginx-default-site
       - name: grav-readiness-probe
         configMap:
           name: grav-readiness-probe
@@ -109,11 +100,6 @@ spec:
         configMap:
           name: php-ini
           items:
-          - key: php.ini
-            path: php.ini
-      - name: php8-ini
-        configMap:
-          name: php8-ini
-          items:
-          - key: php.ini
-            path: php.ini
+          - key: php-local.ini
+            path: php-local.ini
+

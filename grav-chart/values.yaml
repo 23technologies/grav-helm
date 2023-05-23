@@ -1,4 +1,4 @@
-grav_version: 1.7.18
+grav_version: 1.7.41.1
 git:
   repository: https://github.com/23technologies/grav-okeanos.git
   username: 23t-machine-user

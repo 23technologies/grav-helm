@@ -2,5 +2,4 @@ apiVersion: v2
 name: grav-git-sync-helm
 description: A Helm chart for grav-cms with automativ git synchronization
 type: application
-version: 0.1.27
-appVersion: "1.7.18"
+version: 0.2.0
