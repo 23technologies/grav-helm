@@ -5,9 +5,6 @@ git:
   branch: main
   secret_ref: 23t-machine-user-token
 hostnames:
-  - name: 23technologies.cloud
-    www_redirect: true
-    use_gardener_dns: false
-  - name: 23t.grav.23t-prod.okeanos.dev
+  - name: grav.23ke-run-fd70.23ke-ci.okeanos.dev
     www_redirect: false
     use_gardener_dns: true
